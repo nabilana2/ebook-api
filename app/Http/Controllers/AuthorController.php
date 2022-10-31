@@ -92,7 +92,7 @@ class AuthorController extends Controller
      * @param  \App\Models\Author  $author
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Author $author)
+    public function update(Request $request, $id)
     {
             $author = author::find($id);
             if($author){
@@ -101,11 +101,11 @@ class AuthorController extends Controller
                 $author->place_of_birth = $request->place_of_birth ? $request->place_of_birth : $author->place_of_birth;
                 $author->gender = $request->gender ? $request->gender: $Author->gender;
                 $author->email = $request->email ? $request->email : $Author->email;
-                $author->hp = $request-hp ? $request->hp : $Author->hp;
+                $author->hp = $request-> hp ? $request->hp : $Author->hp;
                 $author->save();
                 return response()->json([
                     'status' => 200,
-                    'data' => $Author
+                    'data' => $author
                 ], 200);
             }else{
                 return response()->json([
